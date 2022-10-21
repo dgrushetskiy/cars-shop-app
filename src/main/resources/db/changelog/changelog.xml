@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<databaseChangeLog
-        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
-                     http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+<databaseChangeLog logicalFilePath="db/changelog/changelog.xml"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
     <!-- Здесь мы позже напишем скрипт -->
+    <property name="schema" value="public" global="true"/>
+    <changeSet logicalFilePath="db/changelog/changelog.xml" id="0" author="dg">
+        <tagDatabase tag="INITIAL"/>
+    </changeSet>
 
-
-<!--    <include file="create-changeset-book-table.xml" relativeToChangelogFile="true"/>-->
-<!--    <include file="create-changeset-genre-table.xml" relativeToChangelogFile="true"/>-->
-<!--    <include file="insert-changeset-genre-table.xml" relativeToChangelogFile="true"/>-->
-<!--    <include file="insert-changeset-book-table.xml" relativeToChangelogFile="true"/>-->
-<!--    <include file="create-changeset-comics-table.xml" relativeToChangelogFile="true"/>-->
+    <include file="/script_create/create-changeset-company-table.xml" relativeToChangelogFile="true"/>
+    <!--    <include file="create-changeset-genre-table.xml" relativeToChangelogFile="true"/>-->
+    <!--    <include file="insert-changeset-genre-table.xml" relativeToChangelogFile="true"/>-->
+    <!--    <include file="insert-changeset-book-table.xml" relativeToChangelogFile="true"/>-->
+    <!--    <include file="create-changeset-comics-table.xml" relativeToChangelogFile="true"/>-->
 </databaseChangeLog>
