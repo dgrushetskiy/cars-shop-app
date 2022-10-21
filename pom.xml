@@ -21,6 +21,7 @@
         <model.mapper.version>3.1.0</model.mapper.version>
         <postgresql.version>42.5.0</postgresql.version>
         <org.hibernate>5.6.7.Final</org.hibernate>
+        <liquibase.version>4.17.0</liquibase.version>
         <jackson.core>[2.13.4,)</jackson.core>
         <poi.version>5.2.2</poi.version>
         <java.version>11</java.version>
@@ -54,9 +55,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+        <!-- Migration DB -->
         <dependency>
-            <groupId>org.flywaydb</groupId>
-            <artifactId>flyway-core</artifactId>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-core</artifactId>
+            <version>${liquibase.version}</version>
         </dependency>
         <!-- Apache POI-->
         <dependency>

@@ -1,6 +1,3 @@
-CREATE SCHEMA IF NOT EXISTS cars AUTHORIZATION root;
-CREATE SCHEMA IF NOT EXISTS batch_schema AUTHORIZATION root;
-
 CREATE  TABLE cars.company (
                                id                   bigserial  NOT NULL  ,
                                created_at timestamp DEFAULT CURRENT_TIMESTAMP NOT NULL,
