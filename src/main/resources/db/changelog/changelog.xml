@@ -12,6 +12,7 @@
     </changeSet>
 
     <include file="/script_create/create-changeset-company-table.xml" relativeToChangelogFile="true"/>
+    <include file="/script_create/create-changeset-role-company-table.xml" relativeToChangelogFile="true"/>
     <!--    <include file="create-changeset-genre-table.xml" relativeToChangelogFile="true"/>-->
     <!--    <include file="insert-changeset-genre-table.xml" relativeToChangelogFile="true"/>-->
     <!--    <include file="insert-changeset-book-table.xml" relativeToChangelogFile="true"/>-->
