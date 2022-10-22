@@ -5,18 +5,19 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
+
     <!-- Здесь мы позже напишем скрипт -->
-    <changeSet id="drop-role-company" author="dg">
+    <changeSet id="drop-company" author="dg">
         <preConditions onFail="MARK_RAN">
-            <tableExists tableName="role_company"/>
+            <tableExists tableName="company"/>
         </preConditions>
-        <dropTable cascadeConstraints="true" tableName="role_company"/>
+        <dropTable cascadeConstraints="true" tableName="company"/>
     </changeSet>
     <!-- create table company -->
-    <changeSet id="create-table-role-company" author="dg">
-        <createTable tableName="role_company" schemaName="cars">
+    <changeSet id="create-table-company" author="dg">
+        <createTable tableName="company" schemaName="cars">
             <column autoIncrement="true" name="id" type="bigserial">
-                <constraints primaryKey="true" nullable="false" primaryKeyName="pk_role_company"/>
+                <constraints primaryKey="true" nullable="false" primaryKeyName="pk_company"/>
             </column>
             <column name="created_at" type="timestamp" defaultValueDate="CURRENT_TIMESTAMP(3)">
                 <constraints nullable="false"/>
@@ -27,9 +28,18 @@
             <column name="status" type="boolean" defaultValue="false">
                 <constraints nullable="false"/>
             </column>
-            <column name="role_company_name" type="varchar(150)">
+            <column name="company_name" type="varchar(150)">
                 <constraints nullable="false" unique="true"/>
             </column>
         </createTable>
+        <!-- Добавляем вторичный ключ company_id -->
+        <addForeignKeyConstraint baseTableSchemaName="cars"
+                                 baseColumnNames="company_id"
+                                 baseTableName="person"
+                                 constraintName="fk_person_company"
+                                 referencedColumnNames="id"
+                                 referencedTableName="company"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"/>
     </changeSet>
 </databaseChangeLog>

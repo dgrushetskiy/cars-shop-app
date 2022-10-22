@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog logicalFilePath="db/changelog/changelog.xml"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <!-- Здесь мы позже напишем скрипт -->
+    <changeSet id="drop-type-car" author="dg">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="type_car"/>
+        </preConditions>
+        <dropTable cascadeConstraints="true" tableName="type_car"/>
+    </changeSet>
+    <!-- create table company -->
+    <changeSet id="create-table-type-car" author="dg">
+        <createTable tableName="type_car" schemaName="cars">
+            <column autoIncrement="true" name="id" type="bigserial">
+                <constraints primaryKey="true" nullable="false" primaryKeyName="pk_type_car"/>
+            </column>
+            <column name="created_at" type="timestamp" defaultValueDate="CURRENT_TIMESTAMP(3)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="timestamp" defaultValueDate="CURRENT_TIMESTAMP(3)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="boolean" defaultValue="false">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type_name" type="varchar(100)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+        <!-- Добавляем вторичный ключ type_id -->
+        <addForeignKeyConstraint baseTableSchemaName="cars"
+                                 baseColumnNames="type_id"
+                                 baseTableName="car"
+                                 constraintName="fk_car_type_car"
+                                 referencedColumnNames="id"
+                                 referencedTableName="type_car"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"/>
+    </changeSet>
+</databaseChangeLog>

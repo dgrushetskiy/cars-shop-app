@@ -11,8 +11,11 @@
         <tagDatabase tag="INITIAL"/>
     </changeSet>
 
-    <include file="script_create/create-changeset-schema-db.xml" relativeToChangelogFile="true"/>
-    <include file="/script_create/create-changeset-company-table.xml" relativeToChangelogFile="true"/>
-    <include file="/script_create/create-changeset-role-company-table.xml" relativeToChangelogFile="true"/>
-    <include file="/script_create/create-changeset-type-car-table.xml" relativeToChangelogFile="true"/>
+    <include file="script_create/001_create-changeset-schema-db.xml" relativeToChangelogFile="true"/>
+    <include file="script_create/002_create-changeset-car-table.xml" relativeToChangelogFile="true"/>
+    <include file="script_create/003_create-changeset-person-table.xml" relativeToChangelogFile="true"/>
+    <include file="script_create/004_create-changeset-type-car-table.xml" relativeToChangelogFile="true"/>
+    <include file="script_create/005_create-changeset-company-table.xml" relativeToChangelogFile="true"/>
+    <include file="script_create/006_create-changeset-role-company-table.xml" relativeToChangelogFile="true"/>
+
 </databaseChangeLog>
