@@ -11,6 +11,7 @@
         <tagDatabase tag="INITIAL"/>
     </changeSet>
 
+    <include file="script_create/create-changeset-schema-db.xml" relativeToChangelogFile="true"/>
     <include file="/script_create/create-changeset-company-table.xml" relativeToChangelogFile="true"/>
     <include file="/script_create/create-changeset-role-company-table.xml" relativeToChangelogFile="true"/>
     <!--    <include file="create-changeset-genre-table.xml" relativeToChangelogFile="true"/>-->
