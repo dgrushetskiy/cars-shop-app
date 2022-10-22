@@ -14,8 +14,5 @@
     <include file="script_create/create-changeset-schema-db.xml" relativeToChangelogFile="true"/>
     <include file="/script_create/create-changeset-company-table.xml" relativeToChangelogFile="true"/>
     <include file="/script_create/create-changeset-role-company-table.xml" relativeToChangelogFile="true"/>
-    <!--    <include file="create-changeset-genre-table.xml" relativeToChangelogFile="true"/>-->
-    <!--    <include file="insert-changeset-genre-table.xml" relativeToChangelogFile="true"/>-->
-    <!--    <include file="insert-changeset-book-table.xml" relativeToChangelogFile="true"/>-->
-    <!--    <include file="create-changeset-comics-table.xml" relativeToChangelogFile="true"/>-->
+    <include file="/script_create/create-changeset-type-car-table.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>
