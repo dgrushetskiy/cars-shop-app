@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.Hibernate;
 import ru.gothmog.cars.ws.core.model.AbstractEntity;
+import ru.gothmog.cars.ws.core.model.person.Person;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -31,12 +32,16 @@ public class Car extends AbstractEntity {
     private String carName;
     @Column(name = "number_car", length = 10, nullable = false)
     private String numberCar;
-    @Column(name = "price", precision = 12, scale = 2)
+    @Column(name = "price", precision = 12, scale = 2, nullable = false)
     private BigDecimal price;
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "type_id", nullable = false, foreignKey = @ForeignKey(name = "fk_car_type_car"))
     @JsonIgnore
     private TypeCar typeCar;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "person_id", nullable = false, foreignKey = @ForeignKey(name = "fk_car_person_id"))
+    @JsonIgnore
+    private Person person;
 
     @Override
     public boolean equals(Object o) {
