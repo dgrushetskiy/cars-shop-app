@@ -1,5 +1,6 @@
 package ru.gothmog.cars.ws.core.model.person;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,13 +9,10 @@ import lombok.Setter;
 import org.hibernate.Hibernate;
 import ru.gothmog.cars.ws.core.model.AbstractEntity;
 import ru.gothmog.cars.ws.core.model.cars.Car;
+import ru.gothmog.cars.ws.core.model.company.Company;
+import ru.gothmog.cars.ws.core.model.company.RoleCompany;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.Column;
-import javax.persistence.OneToMany;
-import javax.persistence.CascadeType;
-import javax.persistence.FetchType;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Objects;
@@ -27,6 +25,7 @@ import java.util.Objects;
 @AllArgsConstructor
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Person extends AbstractEntity {
+
     @Column(name = "first_name", length = 150, nullable = false)
     private String firstName;
     @Column(name = "last_name", length = 150, nullable = false)
@@ -35,6 +34,16 @@ public class Person extends AbstractEntity {
     private BigDecimal salary;
     @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Car> cars;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "company_id", nullable = false, foreignKey = @ForeignKey(name = "fk_person_company"))
+    @JsonIgnore
+    private Company company;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "role_company_id", nullable = false, foreignKey = @ForeignKey(name = "fk_person_role_company"))
+    @JsonIgnore
+    private RoleCompany roleCompany;
 
     @Override
     public boolean equals(Object o) {
