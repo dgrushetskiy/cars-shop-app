@@ -28,6 +28,7 @@ import java.util.Objects;
 @AllArgsConstructor
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Car extends AbstractEntity {
+
     @Column(name = "car_name", length = 100, nullable = false)
     private String carName;
     @Column(name = "number_car", length = 10, nullable = false)
