@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
+import ru.gothmog.cars.ws.core.exception.BadRequestException;
 import ru.gothmog.cars.ws.core.exception.ConflictException;
 import ru.gothmog.cars.ws.core.exception.NotFoundException;
 
@@ -35,6 +36,14 @@ public class ExceptionApiHandler {
         log.error(exception.getMessage(), exception);
         return ResponseEntity
                 .status(HttpStatus.CONFLICT)
+                .body(new ErrorMessage(exception.getMessage()));
+    }
+
+    @ExceptionHandler(BadRequestException.class)
+    public ResponseEntity<ErrorMessage> badRequestException(NotFoundException exception) {
+        log.error(exception.getMessage(), exception);
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
                 .body(new ErrorMessage(exception.getMessage()));
     }
 }
