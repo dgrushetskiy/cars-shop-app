@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog logicalFilePath="db/changelog/changelog.xml"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <!-- Здесь мы позже напишем скрипт -->
+    <changeSet id="drop-role-company" author="test">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="role_company"/>
+        </preConditions>
+        <dropTable cascadeConstraints="true" tableName="role_company"/>
+    </changeSet>
+    <!-- create table company -->
+    <changeSet id="create-table-role-company" author="dg">
+        <createTable tableName="role_company" schemaName="test_db">
+            <column autoIncrement="true" name="id" type="bigserial">
+                <constraints primaryKey="true" nullable="false" primaryKeyName="pk_role_company"/>
+            </column>
+            <column name="created_at" type="timestamp" defaultValueDate="CURRENT_TIMESTAMP(3)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="timestamp" defaultValueDate="CURRENT_TIMESTAMP(3)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="boolean" defaultValue="false">
+                <constraints nullable="false"/>
+            </column>
+            <column name="role_company_name" type="varchar(150)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+        <!-- Добавляем вторичный ключ company_id -->
+        <addForeignKeyConstraint baseTableSchemaName="test_db"
+                                 baseColumnNames="role_company_id"
+                                 baseTableName="person"
+                                 constraintName="fk_person_role_company"
+                                 referencedColumnNames="id"
+                                 referencedTableName="role_company"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"/>
+    </changeSet>
+</databaseChangeLog>

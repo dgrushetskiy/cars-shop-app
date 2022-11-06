@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog logicalFilePath="db/changelog/changelog.xml"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <!-- Здесь мы позже напишем скрипт -->
+    <changeSet id="drop-car" author="dg">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="car"/>
+        </preConditions>
+        <dropTable cascadeConstraints="true" tableName="car"/>
+    </changeSet>
+    <!-- create table car -->
+    <changeSet id="create-table-car" author="test">
+        <createTable tableName="car" schemaName="test_db">
+            <column autoIncrement="true" name="id" type="bigserial">
+                <constraints primaryKey="true" nullable="false" primaryKeyName="pk_car"/>
+            </column>
+            <column name="created_at" type="timestamp" defaultValueDate="CURRENT_TIMESTAMP(3)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="timestamp" defaultValueDate="CURRENT_TIMESTAMP(3)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="boolean" defaultValue="false">
+                <constraints nullable="false"/>
+            </column>
+            <column name="car_name" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="number_car" type="varchar(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="price" type="DECIMAL(12, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="person_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

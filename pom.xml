@@ -18,14 +18,15 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <apache.commons.commons-lang3.version>3.12.0</apache.commons.commons-lang3.version>
+        <testcontainers.version>1.17.5</testcontainers.version>
         <openapi.ui.version>1.6.11</openapi.ui.version>
         <sonar-maven-plugin>3.4.0.905</sonar-maven-plugin>
         <jacoco.version>0.8.6</jacoco.version>
         <model.mapper.version>3.1.0</model.mapper.version>
         <postgresql.version>42.5.0</postgresql.version>
         <org.hibernate>5.6.7.Final</org.hibernate>
-        <liquibase.version>4.17.0</liquibase.version>
-        <jackson.core>[2.13.4,)</jackson.core>
+        <liquibase.version>4.17.1</liquibase.version>
+        <jackson.core>2.13.4</jackson.core>
         <poi.version>5.2.2</poi.version>
         <java.version>11</java.version>
     </properties>
@@ -67,6 +68,11 @@
             <groupId>org.liquibase</groupId>
             <artifactId>liquibase-core</artifactId>
             <version>${liquibase.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-maven-plugin</artifactId>
+            <version>3.6.3</version>
         </dependency>
         <!-- Apache POI-->
         <dependency>
@@ -183,6 +189,12 @@
         <dependency>
             <groupId>org.springframework.batch</groupId>
             <artifactId>spring-batch-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${testcontainers.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

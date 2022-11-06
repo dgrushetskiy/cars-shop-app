@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog logicalFilePath="db/changelog/changelog.xml"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+
+    <!-- Здесь мы позже напишем скрипт -->
+    <changeSet id="drop-company" author="test">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="company"/>
+        </preConditions>
+        <dropTable cascadeConstraints="true" tableName="company"/>
+    </changeSet>
+    <!-- create table company -->
+    <changeSet id="create-table-company" author="dg">
+        <createTable tableName="company" schemaName="test_db">
+            <column autoIncrement="true" name="id" type="bigserial">
+                <constraints primaryKey="true" nullable="false" primaryKeyName="pk_company"/>
+            </column>
+            <column name="created_at" type="timestamp" defaultValueDate="CURRENT_TIMESTAMP(3)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="timestamp" defaultValueDate="CURRENT_TIMESTAMP(3)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="boolean" defaultValue="false">
+                <constraints nullable="false"/>
+            </column>
+            <column name="company_name" type="varchar(150)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+        <!-- Добавляем вторичный ключ company_id -->
+        <addForeignKeyConstraint baseTableSchemaName="test_db"
+                                 baseColumnNames="company_id"
+                                 baseTableName="person"
+                                 constraintName="fk_person_company"
+                                 referencedColumnNames="id"
+                                 referencedTableName="company"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"/>
+    </changeSet>
+</databaseChangeLog>
